@@ -3,6 +3,8 @@ CREATE TABLE user (
 	username varchar(20) UNIQUE NOT NULL,
 	password varchar(60) NOT NULL,
 	email	 varchar(60) UNIQUE NOT NULL,
+	money	 int NOT NULL DEFAULT 100,
+	life	 int NOT NULL DEFAULT 100,
 	PRIMARY KEY(id)
 );
 
