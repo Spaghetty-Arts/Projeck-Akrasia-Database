@@ -13,7 +13,6 @@ CREATE TABLE user (
 	winP int not null  default 0,
 	loseP int not null  default 0,
 	rankP int not null  default 1,
-	last_action timestamp not null,
 	PRIMARY KEY(id)
 );
 
@@ -29,7 +28,6 @@ CREATE TABLE reset (
 create table history
 (
 	id INTEGER auto_increment primary key,
-	`match` INTEGER not null,
 	winner int not null,
 	loser int not null,
 	moment timestamp not null
@@ -52,12 +50,5 @@ STARTS '2010-01-01 00:00:00'
 DO
 UPDATE user set token = null and active = 0 where active = 1;
 
+
 ALTER EVENT `delete_old_login` ON  COMPLETION PRESERVE ENABLE;
-
-DROP EVENT IF EXISTS `delete_old_user`;
-CREATE EVENT `delete_old_user`  ON SCHEDULE EVERY 1 hour
-STARTS '2010-01-01 00:00:00'
-DO
-UPDATE user set token = null and active = 0 where TIMESTAMPDIFF(HOUR,last_action,NOW()) > 1;
-
-ALTER EVENT `delete_old_user` ON  COMPLETION PRESERVE ENABLE;
