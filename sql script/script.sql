@@ -8,7 +8,7 @@ CREATE TABLE user (
 	last_login date not null,
 	login_reward int not null default 0,
 	got_reward tinyint not null default 0,
-	active tinyint not null default 0,
+	active int not null default 0,
 	token varchar(60) unique,
 	winP int not null  default 0,
 	loseP int not null  default 0,
