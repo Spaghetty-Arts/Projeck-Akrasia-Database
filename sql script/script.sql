@@ -48,7 +48,7 @@ DROP EVENT IF EXISTS `delete_old_login`;
 CREATE EVENT `delete_old_login`  ON SCHEDULE EVERY 12 hour
 STARTS '2010-01-01 00:00:00'
 DO
-UPDATE user set token = null and active = 0 where active = 1;
+UPDATE user set token = null and active = 0 where active > 0;
 
 
 ALTER EVENT `delete_old_login` ON  COMPLETION PRESERVE ENABLE;
